@@ -17,14 +17,33 @@
   }
 
   function fitToContainer(canvas) {
-    // Make it visually fill the positioned parent
-
-    // ...then set the internal size to match
     canvas.width = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
+
+    var context = canvas.getContext('2d'),
+    devicePixelRatio = window.devicePixelRatio || 1,
+    backingStoreRatio = context.webkitBackingStorePixelRatio ||
+                        context.mozBackingStorePixelRatio ||
+                        context.msBackingStorePixelRatio ||
+                        context.oBackingStorePixelRatio ||
+                        context.backingStorePixelRatio || 1,
+    ratio = devicePixelRatio / backingStoreRatio;
+    if (devicePixelRatio !== backingStoreRatio) {
+        var oldWidth = canvas.width;
+        var oldHeight = canvas.height;
+
+        canvas.width = oldWidth * ratio;
+        canvas.height = oldHeight * ratio;
+
+        canvas.style.width = oldWidth + 'px';
+        canvas.style.height = oldHeight + 'px';
+        context.scale(ratio, ratio);
+    }
+
+    //view.setViewSize(canvas.width*2, canvas.height*2);
     view.viewSize = new Size(canvas.width, canvas.height);
     sizes.view = [canvas.width,canvas.height];
-    sizes.particles = [sizes.view[0], sizes.view[1]*0.30];
+    sizes.particles = [sizes.view[0], sizes.view[1]*0.25];
     sizes.battery = [sizes.view[0]*0.35, sizes.view[1]*0.35];
     stuff();
   }
@@ -162,3 +181,6 @@ function onFrame(event){
       }
       wave.smooth();
     }
+
+
+
