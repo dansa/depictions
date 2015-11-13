@@ -14,8 +14,6 @@ body {
 }
 
 #canvas {
-  width: 320px;
-  height: 640px;
   margin: 0 auto;
   position: absolute;
   left: 50%;
