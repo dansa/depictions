@@ -23,9 +23,9 @@
     canvas.width = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
     view.viewSize = new Size(canvas.width, canvas.height);
-    sizes.view = [canvas.width,canvas.height*0.95];
-    sizes.particles = [sizes.view[0], sizes.view[1]*0.20];
-    sizes.battery = [sizes.view[0]*0.35, sizes.view[1]*0.4];
+    sizes.view = [canvas.width,canvas.height];
+    sizes.particles = [sizes.view[0], sizes.view[1]*0.30];
+    sizes.battery = [sizes.view[0]*0.35, sizes.view[1]*0.35];
     stuff();
   }
 
@@ -162,6 +162,3 @@ function onFrame(event){
       }
       wave.smooth();
     }
-
-
-
